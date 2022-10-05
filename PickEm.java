@@ -87,13 +87,14 @@ public class PickEm {
                 matchup = matchups[cnt];
                 teams = matchup.split("\\|");
                 System.out.println("Who won in " + matchup);
-                System.out.println("Just type 1 for the first team, 2 for the second, or -1 to exit");
+                System.out.println("Just type 1 for the first team, 2 for the second, 3 for tie, or -1 to exit");
                 int winnern = keyboard.nextInt();
                 if (winnern == -1){
                     break;
                 }
                 else if(winnern == 1){
-                    winner = teams[0];
+                    String[] attempt = teams[0].split(" ");
+                    winner = attempt[attempt.length-1];
                     for (Player player:players){
                         //System.out.println(player.getPicks()[cnt]);
                         if (player.getPicks().get(cnt).equals(winner)){
@@ -103,7 +104,8 @@ public class PickEm {
                     
                 }
                 else if(winnern == 2){
-                    winner = teams[1];
+                    String[] attempt = teams[1].split(" ");
+                    winner = attempt[attempt.length-1];
                     for (Player player:players){
                         //System.out.println(player.getPicks()[cnt]);
                         if (player.getPicks().get(cnt).equals(winner)){
@@ -111,6 +113,7 @@ public class PickEm {
                         }
                     }
                 }
+                else if (winnern == 3){}
                 else{
                     System.out.println("Please input one of the three options");
                     cnt--;
