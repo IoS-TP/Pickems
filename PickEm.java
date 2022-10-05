@@ -9,10 +9,9 @@ public class PickEm {
     public static void main(String[] args){
         String[] matchups = thisWeeksGames();
         ArrayList<Player> players = new ArrayList<>();
-        setPlayers(players);
+        int done = setPlayers(players);
         boolean continues = true;
         Scanner keyboard = new Scanner(System.in);
-        int done = 0;
         while (continues){
             System.out.println("What would you like to do?");
             System.out.println("1: View all players/picks in alphabetical order");
@@ -59,6 +58,7 @@ public class PickEm {
         try{
             File file = new File("Picks.csv");
             PrintWriter writer = new PrintWriter(file);
+            writer.println(done);
             for (Player player : players){
                 writer.print(player.getName() + ",");
                 ArrayList<String> chosen = player.getPicks();
@@ -125,11 +125,12 @@ public class PickEm {
         while(cnt < matchups.length && matchups[cnt] != null);
         return cnt;
     }
-    public static void setPlayers(ArrayList<Player> players){
+    public static int setPlayers(ArrayList<Player> players){
         File file = new File("Picks.csv");
-        
+        int ans = 0;
         try{
             Scanner inputs = new Scanner(file);
+            ans = Integer.parseInt(inputs.nextLine());
             while(inputs.hasNextLine()){
                 int cnt = 1;
                 String[] values = inputs.nextLine().split(",");
@@ -149,6 +150,7 @@ public class PickEm {
             System.out.println("File not found");
             System.exit(0);
         }
+        return ans;
     }
 
 
