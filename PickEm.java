@@ -95,9 +95,10 @@ public class PickEm {
                 else if(winnern == 1){
                     String[] attempt = teams[0].split(" ");
                     winner = attempt[attempt.length-1];
+                    System.out.println(winner);
                     for (Player player:players){
                         //System.out.println(player.getPicks()[cnt]);
-                        if (player.getPicks().get(cnt).equals(winner)){
+                        if (player.getPicks().contains(winner)){
                             player.incrementPoints();
                         }
                     }
@@ -106,9 +107,10 @@ public class PickEm {
                 else if(winnern == 2){
                     String[] attempt = teams[1].split(" ");
                     winner = attempt[attempt.length-1];
+                    System.out.println(winner);
                     for (Player player:players){
                         //System.out.println(player.getPicks()[cnt]);
-                        if (player.getPicks().get(cnt).equals(winner)){
+                        if (player.getPicks().contains(winner)){
                             player.incrementPoints();
                         }
                     }
@@ -141,7 +143,7 @@ public class PickEm {
                 while(cnt < values.length -2){
                     temp.addPick(values[cnt]);
                     cnt++;
-                    System.out.println(values[cnt-1]);
+                    //System.out.println(values[cnt-1]);
                 }
                 temp.setWeeks(Integer.parseInt(values[cnt]));
                 temp.setTotal(Integer.parseInt(values[cnt+1]));
